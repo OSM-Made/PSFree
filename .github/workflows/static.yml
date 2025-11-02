@@ -1,4 +1,4 @@
-name: Deploy GitHub Pages
+name: Deploy GitHub Pages Static Site
 
 on:
   push:
@@ -8,41 +8,32 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions for the GITHUB_TOKEN to allow deployment
+# Sets permissions for the GITHUB_TOKEN
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # The 'build' job handles all file preparation and artifact uploading
+  # The 'build' job prepares and uploads the content artifact
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      # (Optional) If your project has a build step (like compiling or minimizing files), place it here.
-      # For simple static HTML/JS files, you can skip a dedicated "build" step.
-
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
+      - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # This deploys the content of the root directory of your repository.
-          # Change this to a specific folder (e.g., `dist` or `build`) if your project uses one.
-          path: ${{ steps.pages.outputs.working_directory }}
+          path: . 
 
-  # The 'deploy' job deploys the uploaded artifact to GitHub Pages
+  # The 'deploy' job takes the artifact and publishes it to GitHub Pages
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    # This job must wait for the build job to finish
     needs: build
     steps:
       - name: Deploy to GitHub Pages
