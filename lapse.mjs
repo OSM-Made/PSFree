@@ -1865,8 +1865,8 @@ kexploit().then(() => {
 //Load ABC fix as a regular Payload
 setTimeout(PayloadLoader("aio_patches.bin"),500);
 log("AIO Fixes Applied.!");
-//Load GoldHEN :)
-setTimeout(PayloadLoader("Fusion-900.bin"),500);
-log("Fusion Loaded.!");
+
+// Run the bin loader.
+runBinLoader();
 
 })
