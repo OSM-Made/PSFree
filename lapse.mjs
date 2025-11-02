@@ -1866,7 +1866,7 @@ kexploit().then(() => {
 setTimeout(PayloadLoader("aio_patches.bin"),500);
 log("AIO Fixes Applied.!");
 //Load GoldHEN :)
-setTimeout(PayloadLoader("goldhen.bin"),500);
-log("GoldHEN Loaded.!");
+setTimeout(PayloadLoader("Fusion-900.bin"),500);
+log("Fusion Loaded.!");
 
 })
