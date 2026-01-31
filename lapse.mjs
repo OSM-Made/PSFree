@@ -1866,6 +1866,9 @@ kexploit().then(() => {
 setTimeout(PayloadLoader("aio_patches.bin"),500);
 log("AIO Fixes Applied.!");
 
+setTimeout(PayloadLoader("elfldr.bin"),500);
+log("ELF Loader is Ready!");
+
 // Run the bin loader.
 runBinLoader();
 
